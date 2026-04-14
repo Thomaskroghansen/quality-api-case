@@ -30,24 +30,24 @@ jobs:
       - name: Run tests
         run: ctest --test-dir build --output-on-failure
 
-deploy-pages:
-  if: github.ref == 'refs/heads/main'
-  needs: build-and-test
-  runs-on: ubuntu-latest
-  environment:
-    name: github-pages
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-  
-    - name: Setup Pages
-      uses: actions/configure-pages@v5
+  deploy-pages:
+    if: github.ref == 'refs/heads/main'
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+    
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-    - name: Upload web artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: ./web
+      - name: Upload web artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./web
 
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
