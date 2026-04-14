@@ -22,7 +22,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y cmake g++ ninja-build
 
       - name: Configure project
-        run: cmake -S . -B Build
+        run: cmake -S . -B build
 
       - name: Build project
         run: cmake --build build
